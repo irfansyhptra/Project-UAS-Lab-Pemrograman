@@ -32,7 +32,7 @@ void baca_data_barang() {
     fclose(file);
 }
 
-void daftar_barang() {
+void tampilkan_daftar_barang() {
     printf("Daftar Barang:\n");
     printf("-------------\n");
     printf("No.  Nama Barang              Stok    Harga\n");
@@ -45,27 +45,10 @@ void daftar_barang() {
     printf("-----------------------------------------\n");
 }
 
-void cari_barang(const char *kriteria) {
-    printf("Hasil Pencarian Barang (Kriteria: %s):\n", kriteria);
-    printf("-----------------------------------------\n");
-    printf("No.  Nama Barang              Stok    Harga\n");
-    printf("-----------------------------------------\n");
-
-    for (int i = 0; i < jumlah_barang; i++) {
-        if (strstr(daftar_barang[i].nama, kriteria) != NULL) {
-            printf("%-4d %-24s %-8d %.2lf\n", i + 1, daftar_barang[i].nama, daftar_barang[i].stok, daftar_barang[i].harga);
-        }
-    }
-
-    printf("-----------------------------------------\n");
-}
-
 int main() {
     baca_data_barang();
 
-    daftar_barang();
-
-    cari_barang("Baju");
+    tampilkan_daftar_barang();
 
     return 0;
 }
