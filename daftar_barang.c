@@ -1,19 +1,12 @@
+#include "header.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // Tambahkan header file ini
 #include <string.h>
-
-#define MAX_BARANG 100
-
-struct Barang {
-    char nama[50];
-    int stok;
-    double harga;
-};
 
 struct Barang daftar_barang[MAX_BARANG];
 int jumlah_barang = 0;
 
-void baca_data_barang() {
+void baca_data_barang2() {
     FILE *file = fopen("barang.txt", "r");
     if (file == NULL) {
         printf("Gagal membuka file.\n");
@@ -45,10 +38,10 @@ void tampilkan_daftar_barang() {
     printf("-----------------------------------------\n");
 }
 
-int main() {
-    baca_data_barang();
+// int main() {
+//     baca_data_barang();
 
-    tampilkan_daftar_barang();
+//     tampilkan_daftar_barang();
 
-    return 0;
-}
+//     return 0;
+// }

@@ -1,17 +1,7 @@
+#include "header.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-#define MAX_BARANG 100
-
-struct Barang {
-    char nama[50];
-    int stok;
-    double harga;
-};
-
-struct Barang daftar_barang[MAX_BARANG];
-int jumlah_barang = 0;
 
 void baca_data_barang() {
     FILE *file = fopen("barang.txt", "r");
@@ -92,17 +82,4 @@ void hapus_barang(const char *nama_barang) {
     printf("Barang dengan nama %s berhasil dihapus.\n", nama_barang);
 
     tulis_data_barang();
-}
-
-int main() {
-    baca_data_barang();
-
-    char nama_barang[50];
-    printf("Masukkan nama barang yang akan dihapus: ");
-    fgets(nama_barang, sizeof(nama_barang), stdin);
-    nama_barang[strcspn(nama_barang, "\n")] = '\0'; // Menghapus karakter newline dari input
-
-    hapus_barang(nama_barang);
-
-    return 0;
 }
