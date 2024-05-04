@@ -6,6 +6,7 @@ void tampilkan_menu() {
     printf("\nMenu:\n");
     printf("1. Daftar Barang\n");
     printf("2. Kurangi Barang\n");
+    printf("3. Tambah Barang\n");
     printf("0. Keluar\n");
 }
 
@@ -35,6 +36,9 @@ int main() {
                 hapus_barang(nama_barang);
                 break;
             }
+            case 3:
+                tambah_barang();
+                break;
             case 0:
                 printf("Keluar\n");
                 break;

@@ -1,12 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-
-struct Barang {
-    char nama[50];
-    int stok;
-    double harga;
-};
+#include "header.h"
 
 void tambah_barang() {
     struct Barang barang;
@@ -34,10 +28,4 @@ void tambah_barang() {
     fclose(file);
 
     printf("Barang berhasil ditambahkan.\n");
-}
-
-int main() {
-    tambah_barang();
-
-    return 0;
 }

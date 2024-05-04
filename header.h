@@ -18,5 +18,6 @@ void tulis_data_barang();
 void kurangi_barang(const char *nama_barang, int jumlah);
 void hapus_barang(const char *nama_barang);
 void tampilkan_daftar_barang();
+void tambah_barang();
 
 #endif
