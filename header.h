@@ -4,6 +4,7 @@
 #define MAX_BARANG 100
 
 struct Barang {
+    char kode[3];
     char nama[50];
     int stok;
     double harga;
