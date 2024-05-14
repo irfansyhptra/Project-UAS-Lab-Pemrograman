@@ -3,6 +3,20 @@
 #include <string.h>
 
 
+void tulis_data_barang() {
+    FILE *file = fopen("barang.txt", "w");
+    if (file == NULL) {
+        printf("Gagal membuka file.\n");
+        return;
+    }
+
+    for (int i = 0; i < jumlah_barang; i++) {
+        fprintf(file, "%s,%d,%.2lf\n", daftar_barang[i].nama, daftar_barang[i].stok, daftar_barang[i].harga);
+    }
+
+    fclose(file);
+}
+
 void baca_data_barang() {
     FILE *file = fopen("barang.txt", "r");
     if (file == NULL) {
@@ -19,18 +33,29 @@ void baca_data_barang() {
     fclose(file);
 }
 
-void tulis_data_barang() {
-    FILE *file = fopen("barang.txt", "w");
-    if (file == NULL) {
-        printf("Gagal membuka file.\n");
+void hapus_barang(const char *nama_barang) {
+    int index = -1;
+
+    for (int i = 0; i < jumlah_barang; i++) {
+        if (strcmp(daftar_barang[i].nama, nama_barang) == 0) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index == -1) {
+        printf("Barang dengan nama %s tidak ditemukan.\n", nama_barang);
         return;
     }
 
-    for (int i = 0; i < jumlah_barang; i++) {
-        fprintf(file, "%s,%d,%.2lf\n", daftar_barang[i].nama, daftar_barang[i].stok, daftar_barang[i].harga);
+    for (int i = index; i < jumlah_barang - 1; i++) {
+        daftar_barang[i] = daftar_barang[i + 1];
     }
 
-    fclose(file);
+    jumlah_barang--;
+    printf("Barang dengan nama %s berhasil dihapus.\n", nama_barang);
+
+    tulis_data_barang();
 }
 
 void kurangi_barang(const char *nama_barang, int jumlah) {
@@ -59,27 +84,3 @@ void kurangi_barang(const char *nama_barang, int jumlah) {
     tulis_data_barang();
 }
 
-void hapus_barang(const char *nama_barang) {
-    int index = -1;
-
-    for (int i = 0; i < jumlah_barang; i++) {
-        if (strcmp(daftar_barang[i].nama, nama_barang) == 0) {
-            index = i;
-            break;
-        }
-    }
-
-    if (index == -1) {
-        printf("Barang dengan nama %s tidak ditemukan.\n", nama_barang);
-        return;
-    }
-
-    for (int i = index; i < jumlah_barang - 1; i++) {
-        daftar_barang[i] = daftar_barang[i + 1];
-    }
-
-    jumlah_barang--;
-    printf("Barang dengan nama %s berhasil dihapus.\n", nama_barang);
-
-    tulis_data_barang();
-}

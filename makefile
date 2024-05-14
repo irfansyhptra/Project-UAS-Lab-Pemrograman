@@ -5,6 +5,10 @@ SOURCES = main.c baca_data_barang2.c tampilkan_daftar_barang.c baca_data_barang.
 OBJECTS = $(SOURCES:.c=.o)
 EXECUTABLE = main
 
+main :
+	gcc -o output kurangi_barang.c daftar_barang.c tambah_barang.c main.c
+	./output
+
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
@@ -16,6 +20,3 @@ $(EXECUTABLE): $(OBJECTS)
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
 	
-main :
-	gcc -o output kurangi_barang.c daftar_barang.c tambah_barang.c main.c
-	./output
