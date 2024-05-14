@@ -38,6 +38,15 @@ void tampilkan_daftar_barang() {
     printf("-----------------------------------------\n");
 }
 
+float hitung_total_harga(struct Barang daftar_barang[], int jumlah_barang) {
+    float total = 0.0;
+
+    for (int i = 0; i < jumlah_barang; i++) {
+        total += daftar_barang[i].harga;
+    }
+
+    return total;
+}
 // int main() {
 //     baca_data_barang();
 
