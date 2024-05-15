@@ -1,5 +1,6 @@
 #ifndef HEADER_H
 #define HEADER_H
+#include <stdio.h>
 
 #define MAX_BARANG 100
 
@@ -9,7 +10,6 @@ struct Barang {
     int stok;
     double harga;
 };
-
 extern struct Barang daftar_barang[MAX_BARANG];
 extern int jumlah_barang;
 
@@ -20,5 +20,12 @@ void kurangi_barang(const char *nama_barang, int jumlah);
 void hapus_barang(const char *nama_barang);
 void tampilkan_daftar_barang();
 void tambah_barang();
+void pembayaran();
+void tampilkan_menu();
+int login();
+void tambah_transaksi();
+float hitung_total_harga(struct Barang daftar_barang[], int jumlah_barang);
+void lihat_riwayat_transaksi();//struct Transaksi *riwayat, int jumlah_transaksi);
+
 
 #endif
