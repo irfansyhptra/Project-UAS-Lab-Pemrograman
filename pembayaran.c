@@ -3,28 +3,20 @@
 #include <string.h>
 #include "header.h"
 
-void pembayaran()
-{
-   struct Barang data[MAX_BARANG];
+void pembayaran() {
+    barang data[MAX_BARANG];
+    int ukuran_barang;
     int jumlahBarang, index = 0;
-    char namaBarang[MAX_BARANG];
+    char nama[50];
     float totalHarga, hargaBarang, diskon = 0;
     char kodeVoucher[20];
 
-    // Membaca data barang dari file
-    FILE *file = fopen("barang.txt", "r");
-    if (file == NULL) {
-        printf("Error: File barang.txt tidak dapat dibuka.\n");
-        return;
-    }
-    while (fscanf(file, "%49s %f", data[index].nama, &data[index].harga) != EOF) {
-        index++;
-    }
-    fclose(file);
+    // Baca data barang dari file menggunakan fungsi barang_tersedia()
+    barang_tersedia(data, &ukuran_barang);
 
-    // Membaca input dari pengguna
+    // Baca input dari pengguna
     printf("Masukkan nama barang: ");
-    if (scanf("%[^\n]%*c", &namaBarang) != 1) {
+    if (scanf("%s", &nama) != 1) {
         printf("Error: Gagal membaca input nama barang.\n");
         return;
     }
@@ -42,9 +34,13 @@ void pembayaran()
     }
 
     // Mencari harga barang berdasarkan nama barang yang diinputkan
-    for (int i = 0; i < index; i++) {
-        if (strcmp(data[i].nama, namaBarang) == 0) {
+    for (int i = 0; i < ukuran_barang; i++) {
+        if (strcmp(data[i].nama, nama) == 0) {
             hargaBarang = data[i].harga;
+            if (jumlahBarang > data[i].stok) {
+                printf("Maaf, stok barang tidak mencukupi.\n");
+                return;
+            }
             break;
         }
     }
@@ -60,4 +56,3 @@ void pembayaran()
         printf("Error: Barang tidak ditemukan.\n");
     }
 }
-

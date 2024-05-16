@@ -715,6 +715,7 @@ int main(int argc, char *argv[])
                     karyawan_pembeli(karyawan);
 
                 beli_barangs:
+                
                     // Menampilkan header dan menu peminjaman buku
                     header();
 
@@ -737,7 +738,6 @@ int main(int argc, char *argv[])
                                 // Jika sudah dipinjam, menampilkan pesan dan meminta input lagi
                                 status_barang(win_linux, 1);
 
-                                goto beli_barang;
                             }
                             else
                             {
@@ -751,7 +751,6 @@ int main(int argc, char *argv[])
                                 // Jika sudah dipinjam, menampilkan pesan dan meminta input lagi
                                 status_barang(win_linux, 1);
 
-                                goto beli_barang;
                             }
                             else
                             {
@@ -770,7 +769,6 @@ int main(int argc, char *argv[])
                                 // Jika tidak tersedia, menampilkan pesan dan meminta input lagi
                                 status_barang(win_linux, 2);
 
-                                goto beli_barang;
                             }
                             else
                             {
@@ -791,8 +789,6 @@ int main(int argc, char *argv[])
                         {
                             // Jika buku tidak ditemukan, menampilkan pesan dan meminta input lagi
                             status_barang(win_linux, 2);
-
-                            goto beli_barang;
                         }
                         else
                         {
