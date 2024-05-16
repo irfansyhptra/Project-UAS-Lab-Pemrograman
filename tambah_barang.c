@@ -5,32 +5,45 @@
 void tambah_barang() {
     struct Barang barang;
 
-    printf("Masukkan kode barang: ");   // Menambahkan input kode barang
-    fgets(barang.kode, sizeof(barang.kode), stdin);
-    barang.kode[strcspn(barang.kode, "\n")] = '\0';
+        printf("\033[33m ID Barang\t\t: ");
+    if (scanf("%9s", barang.id) != 1) {
+        printf("Gagal membaca input ID Barang.\n");
+        return;
+    }
+    getchar(); // Menggunakan getchar() untuk mengonsumsi karakter newline setelah input ID Barang
 
-    printf("Masukkan nama barang: ");
-    getchar();  // Membersihkan input buffer
-    fgets(barang.nama, sizeof(barang.nama), stdin);
-    barang.nama[strcspn(barang.nama, "\n")] = '\0';
+    printf("\033[33m Nama Barang\t\t: ");
+    if (fgets(barang.nama, sizeof(barang.nama), stdin) == NULL) {
+        printf("Gagal membaca input Nama Barang.\n");
+        return;
+    }
+    barang.nama[strcspn(barang.nama, "\n")] = '\0'; // Menghapus karakter newline
 
-    printf("Masukkan stok barang: ");
-    scanf("%d", &barang.stok);
+    printf("\033[33m Masukan Jumlah Stok\t: ");
+    if (scanf("%d", &barang.stok) != 1) {
+        printf("Gagal membaca input Jumlah Stok.\n");
+        return;
+    }
+    getchar(); // Menggunakan getchar() untuk mengonsumsi karakter newline setelah input Jumlah Stok
 
-    printf("Masukkan harga barang: ");
-    scanf("%lf", &barang.harga);
+    printf("\033[33m Masukan Harga Barang\t: ");
+    if (scanf("%lf", &barang.harga) != 1) {
+        printf("Gagal membaca input Harga Barang.\n");
+        return;
+    }
+    printf("\033[0m");
+    enter(1);
 
-    // Membuka file barang.txt dalam mode append
     FILE *file = fopen("barang.txt", "a");
     if (file == NULL) {
         printf("Gagal membuka file.\n");
         return;
     }
 
-    // Menulis data barang ke dalam file
-    fprintf(file, "%s,%s,%d,%.2lf\n", barang.kode, barang.nama, barang.stok, barang.harga);
+    fprintf(file, "%s,%s,%d,%.2lf\n", barang.id, barang.nama, barang.stok, barang.harga);
+    fflush(file); // Memastikan data ditulis ke file
 
     fclose(file);
 
-    printf("Barang berhasil ditambahkan.\n");
+    printf("\033[33m Barang berhasil ditambahkan.\n");
 }
